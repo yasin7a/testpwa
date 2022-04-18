@@ -4,16 +4,15 @@ import Head from "next/head";
 
 export default function Home() {
   let addBtn = React.useRef();
-
   let [popout, setpopout] = React.useState(false);
   let [ispop, setIspop] = React.useState(false);
-  const [promptInstall, setPromptInstall] = React.useState(null);
   let handlePop = () => {
     setpopout(true);
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     window.onload = () => {
+      let deferredPrompt;
 
       // if (
       //   window.matchMedia("(display-mode: standalone)").matches ||
@@ -27,25 +26,30 @@ export default function Home() {
 
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
-        setPromptInstall(e);
-        setpopout(false);
+        deferredPrompt = e;
+        listenToUserAction();
       });
+      function listenToUserAction() {
+        addBtn.current?.addEventListener("click", actions);
+      }
 
-      addBtn.current?.addEventListener("click", () => {
+      let actions = () => {
         setpopout(true);
-        promptInstall.prompt();
-        promptInstall.userChoice.then((choice) => {
+
+        deferredPrompt?.prompt();
+        deferredPrompt?.userChoice.then((choice) => {
           if (choice.outcome === "accepted") {
             console.log("User accepted");
+            setIspop(true);
           } else {
             console.log("User dismissed");
           }
         });
-        setPromptInstall(null);
-      });
-
+        deferredPrompt = null;
+      };
       window.addEventListener("appinstalled", () => {
-        setPromptInstall(null);
+        deferredPrompt = null;
+        setIspop(true);
         console.log("PWA was installed");
       });
     };
@@ -53,6 +57,7 @@ export default function Home() {
 
   return (
     <>
+
       {popout ? (
         <></>
       ) : (
@@ -67,7 +72,7 @@ export default function Home() {
               bottom: 0,
             }}
           >
-            <h2>For better experience install in mobile!!y</h2>
+            <h2>For better experience install in mobile</h2>
             <button ref={addBtn}>Install</button>
             <button onClick={handlePop} style={{ marginLeft: "200px" }}>
               ❌

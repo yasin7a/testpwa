@@ -7,7 +7,7 @@ export default function Home() {
 
   let [popout, setpopout] = React.useState(false);
   let [ispop, setIspop] = React.useState(false);
-  const [promptInstall, setPromptInstall] = useState(null);
+  const [promptInstall, setPromptInstall] = React.useState(null);
   let handlePop = () => {
     setpopout(true);
   };
@@ -67,7 +67,7 @@ export default function Home() {
               bottom: 0,
             }}
           >
-            <h2>For better experience install in mobile!!</h2>
+            <h2>For better experience install in mobile!!y</h2>
             <button ref={addBtn}>Install</button>
             <button onClick={handlePop} style={{ marginLeft: "200px" }}>
               ❌

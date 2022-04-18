@@ -7,46 +7,46 @@ export default function Home() {
 
   let [popout, setpopout] = React.useState(false);
   let [ispop, setIspop] = React.useState(false);
+  const [promptInstall, setPromptInstall] = useState(null);
   let handlePop = () => {
     setpopout(true);
   };
 
   React.useEffect(() => {
-    
     window.onload = () => {
       let deferredPrompt;
 
-      if (
-        window.matchMedia("(display-mode: standalone)").matches ||
-        window.navigator.standalone === true
-      ) {
-        setIspop(true);
-        setpopout(true);
+      // if (
+      //   window.matchMedia("(display-mode: standalone)").matches ||
+      //   window.navigator.standalone === true
+      // ) {
+      //   setIspop(true);
+      //   setpopout(true);
 
-        deferredPrompt = null;
-      }
+      //   deferredPrompt = null;
+      // }
 
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
-        deferredPrompt = e;
+        setPromptInstall(e);
         setpopout(false);
       });
 
       addBtn.current?.addEventListener("click", () => {
         setpopout(true);
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choice) => {
+        promptInstall.prompt();
+        promptInstall.userChoice.then((choice) => {
           if (choice.outcome === "accepted") {
             console.log("User accepted");
           } else {
             console.log("User dismissed");
           }
         });
-        deferredPrompt = null;
+        setPromptInstall(null);
       });
 
       window.addEventListener("appinstalled", () => {
-        deferredPrompt = null;
+        setPromptInstall(null);
         console.log("PWA was installed");
       });
     };
@@ -68,7 +68,7 @@ export default function Home() {
               bottom: 0,
             }}
           >
-            <h2>For better experience install in mobile</h2>
+            <h2>For better experience install in mobile!!</h2>
             <button ref={addBtn}>Install</button>
             <button onClick={handlePop} style={{ marginLeft: "200px" }}>
               ❌

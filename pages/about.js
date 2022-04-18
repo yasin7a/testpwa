@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Head from "next/head";
-// import Ab from "../components/ab";
 
 export default function About() {
   return (
@@ -12,7 +11,6 @@ export default function About() {
         <a> Home </a>
       </Link>
       <h2>About page</h2>
-      {/* <Ab /> */}
     </>
   );
 }

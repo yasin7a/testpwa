@@ -14,7 +14,6 @@ export default function Home() {
 
   React.useEffect(() => {
     window.onload = () => {
-      let deferredPrompt;
 
       // if (
       //   window.matchMedia("(display-mode: standalone)").matches ||

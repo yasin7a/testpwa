@@ -5,7 +5,7 @@ const withPWA = require("next-pwa");
 
 const nextConfig = {
   pwa: {
-    disable: isProd,
+    disable: !isProd,
     dest: "public",
   },
   reactStrictMode: true,

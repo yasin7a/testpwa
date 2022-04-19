@@ -43,7 +43,8 @@ export default function Home() {
   };
   const handleSkip = () => {
     setDelpop(true);
-    Cookies.set("skipPWA", "true", { expires: 2, path: "/" });
+    var onemin = new Date(new Date().getTime() + 1 * 60 * 1000);
+    Cookies.set("skipPWA", "true", { expires: onemin, path: "/" });
     alert("pwa pop up deleted for 2 days");
   };
   console.log("render");

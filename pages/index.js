@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-let deferredPrompt;
 export default function Home() {
   const [installable, setInstallable] = React.useState(false);
+  const [deferredPrompt, setDeferredPrompt] = React.useState(null);
   React.useEffect(() => {
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
-      deferredPrompt = e;
+      setDeferredPrompt(e);
       setInstallable(true);
     });
 
@@ -18,7 +18,6 @@ export default function Home() {
   const handleInstallClick = (e) => {
     setInstallable(false);
     deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the install prompt");
@@ -31,7 +30,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home page</title>
+        <title>Home page done</title>
       </Head>
 
       <Link href="/about">

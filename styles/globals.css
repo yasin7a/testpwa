@@ -12,9 +12,32 @@ body {
 
 a {
   text-decoration: none;
-  color:tomato
+  color: tomato;
 }
 
 * {
   box-sizing: border-box;
+}
+.pwa-pop {
+  background-color: blue;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+.pwa-pop button{
+  background-color:rgb(194, 7, 7);
+
+  color:rgb(215, 213, 213);
+  padding: 10px;
+  font-size: 15px;
+  border:0;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.pwa-pop button:nth-child(2){
+  background-color:rgb(17, 18, 17);
+
 }

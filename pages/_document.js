@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import ReactOneSignal from "../components/onSignal";
 
 class MyDocument extends Document {
   render() {
@@ -22,10 +23,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&display=swap"
             rel="stylesheet"
           />
-          <script
-            async
-            src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          ></script>
+          <ReactOneSignal />
         </Head>
         <body>
           <Main />

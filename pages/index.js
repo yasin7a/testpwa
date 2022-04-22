@@ -59,7 +59,7 @@ export default function Home() {
       <Link href="/about">
         <a> About </a>
       </Link>
-      <h2>Home = page !!!push!!!</h2>
+      <h2>Home ========= page !!!push!!!</h2>
       {!loading &&
         (skip ||
           (installable && (
